@@ -77,7 +77,19 @@ def main():
   if not items:
       print('No files found.')
       return
-  send_message('Recipes of the Week', items, 'gotnix13@gmail.com')
+
+  message = f"""
+  These are the recepies for the week:
+   {items[0].get('name')}
+   {items[1].get('name')}
+   {items[2].get('name')}
+   {items[3].get('name')}
+
+   Enjoy!!!
+
+   -- NoThinkFoodstuff
+  """
+  send_message('Recipes of the Week', message, 'gotnix13@gmail.com')
   print('Files:')
   # print(items)
   for item in items:
