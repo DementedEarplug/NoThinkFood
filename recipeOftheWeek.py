@@ -4,6 +4,7 @@ import os.path
 import random
 import smtplib
 from email.mime.text import MIMEText
+from email_auth import email_auth
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -15,8 +16,8 @@ from googleapiclient.errors import HttpError
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
 def send_message(subject, message, recipient):
-    email = email_auth['email']
-    password = email_auth['password']
+    email = 'inStockChecker-WN@outlook.com'
+    password = 'K#j8WXm$ZkV2fjqrj!'
 
     #set up email server
     server = smtplib.SMTP("smtp.outlook.com", 587)
@@ -25,12 +26,13 @@ def send_message(subject, message, recipient):
 
     # Setup email msg
     msg = MIMEText(message)
-    msg['Subject'] = 'Recipes of the Week'
+    msg['Subject'] = subject
     msg['From'] = email
     msg['To'] = recipient
 
     # Send email
     server.sendmail(email, recipient, msg.as_string())
+    server.quit()
 
 def create_drive_service():
   """Shows basic usage of the Drive v3 API.
@@ -76,6 +78,7 @@ def main():
   if not items:
       print('No files found.')
       return
+  send_message('Recipes of the Week', items, '')
   print('Files:')
   # print(items)
   for item in items:
