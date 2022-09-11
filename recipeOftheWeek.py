@@ -18,6 +18,7 @@ SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 def send_message(subject, message, recipient):
     email = email_auth['email']
     password = email_auth['password']
+    phone = email_auth['phone']
 
     #set up email server
     server = smtplib.SMTP("smtp-mail.outlook.com", 587)
@@ -31,7 +32,7 @@ def send_message(subject, message, recipient):
     msg['To'] = recipient
 
     # Send email
-    server.sendmail(email, recipient, msg.as_string())
+    server.sendmail(email, [recipient, phone], msg.as_string())
 
 def create_drive_service():
   """Shows basic usage of the Drive v3 API.
