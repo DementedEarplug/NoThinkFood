@@ -16,11 +16,11 @@ from googleapiclient.errors import HttpError
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
 def send_message(subject, message, recipient):
-    email = 'inStockChecker-WN@outlook.com'
-    password = 'K#j8WXm$ZkV2fjqrj!'
+    email = email_auth['email']
+    password = email_auth['password']
 
     #set up email server
-    server = smtplib.SMTP("smtp.outlook.com", 587)
+    server = smtplib.SMTP("smtp-mail.outlook.com", 587)
     server.starttls()
     server.login(email,password)
 
@@ -32,7 +32,6 @@ def send_message(subject, message, recipient):
 
     # Send email
     server.sendmail(email, recipient, msg.as_string())
-    server.quit()
 
 def create_drive_service():
   """Shows basic usage of the Drive v3 API.
@@ -78,7 +77,7 @@ def main():
   if not items:
       print('No files found.')
       return
-  send_message('Recipes of the Week', items, '')
+  send_message('Recipes of the Week', items, 'gotnix13@gmail.com')
   print('Files:')
   # print(items)
   for item in items:
