@@ -1,0 +1,4 @@
+crontab command to add:
+
+// Change to the correct virtualenv.
+30 10 * * 6 /home/dementedearplug/.local/share/virtualenvs/NoThinkFood-VDMHfQZj/bin/python3 recipeOftheWeekOnline.py
